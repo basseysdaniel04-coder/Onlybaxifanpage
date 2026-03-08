@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnlyBaxiPage</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- Animation library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("https://images.unsplash.com/photo-1519125323398-675f0ddb6308");
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        .overlay {
+            background: rgba(0,0,0,0.6);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.1);
+            box-shadow: 0 0 20px rgba(0,0,0,0.4);
+        }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 12px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(45deg, #ff7b00, #ff0055);
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px #ff0055;
+        }
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,0.7);
+        }
+        .popup-content {
+            background: white;
+            color: black;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 300px;
+            animation: zoomIn 0.4s;
+        }
+        input {
+            padding: 10px;
+            width: 80%;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: 1px solid gray;
+        }
+        img {
+            width: 250px;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <div class="container animate__animated animate__fadeIn">
+            <h1>Welcome to OnlyBaxiPage</h1>
+            <button onclick="openPromo()">Next</button>
+        </div>
+    </div>
+
+    <!-- Promo popup -->
+    <div class="popup" id="promo">
+        <div class="popup-content">
+            <p>Use promo code to join the free subscription</p>
+            <button onclick="enterPromo()">Enter Promo Code</button>
+        </div>
+    </div>
+
+    <!-- Promo input -->
+    <div class="popup" id="promoInput">
+        <div class="popup-content">
+            <p>Enter Promo Code</p>
+            <input id="promoCode" type="text">
+            <br><br>
+            <button onclick="checkPromo()">Submit</button>
+        </div>
+    </div>
+
+    <!-- Success -->
+    <div class="popup" id="success">
+        <div class="popup-content">
+            <h3>🎉 Congratulations</h3>
+            <p>You successfully joined the fan page</p>
+            <button onclick="verify()">Next</button>
+        </div>
+    </div>
+
+    <!-- Verification -->
+    <div class="popup" id="verify">
+        <div class="popup-content">
+            <p>Verification Required<br>Type: tsuma</p>
+            <input id="verifyInput" type="text">
+            <br><br>
+            <button onclick="checkVerify()">Next</button>
+        </div>
+    </div>
+
+    <!-- Message -->
+    <div class="popup" id="message">
+        <div class="popup-content">
+            <p>I specially made this page for you.  
+            I normally don't take pictures, but this is a special page for my biggest fan.</p>
+            <button onclick="showFinal()">Next</button>
+        </div>
+    </div>
+
+    <!-- Final -->
+    <div class="popup" id="final">
+        <div class="popup-content">
+            <!-- This is where you put your image -->
+            <img src="yourphoto.jpg" alt="Baxi Photo">
+            <h2>XOXO</h2>
+        </div>
+    </div>
+
+    <script>
+        function openPromo() {
+            document.getElementById("promo").style.display = "flex";
+        }
+
+        function enterPromo() {
+            document.getElementById("promo").style.display = "none";
+            document.getElementById("promoInput").style.display = "flex";
+        }
+
+        function checkPromo() {
+            let code = document.getElementById("promoCode").value;
+            if (code === "baxixoxo") {
+                document.getElementById("promoInput").style.display = "none";
+                document.getElementById("success").style.display = "flex";
+            } else {
+                alert("Wrong promo code");
+            }
+        }
+
+        function verify() {
+            document.getElementById("success").style.display = "none";
+            document.getElementById("verify").style.display = "flex";
+        }
+
+        function checkVerify() {
+            let verify = document.getElementById("verifyInput").value;
+            if (verify === "tsuma") {
+                document.getElementById("verify").style.display = "none";
+                document.getElementById("message").style.display = "flex";
+            } else {
+                alert("Verification failed");
+            }
+        }
+
+        function showFinal() {
+            document.getElementById("message").style.display = "none";
+            document.getElementById("final").style.display = "flex";
+        }
+    </script>
+</body>
+</html>
